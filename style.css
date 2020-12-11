@@ -1,0 +1,22 @@
+body {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-family: Trebuchet MS, sans-serif;
+}
+
+.field {
+    background: linear-gradient(#FFFFFF, #EDF5FD);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+}
+
+footer {
+    background: #fafafa;
+    color: rgba(0, 0, 0, 0.65);
+    text-align: center;
+    padding: 1em;
+    box-shadow: 0 0 5px #888;
+}

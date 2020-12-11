@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ROTMG Transparency Calculator</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style type="text/css">
+    br {
+        display: block;
+        content: "";
+        margin-top: 0.5em;
+        line-height: 190%;
+        vertical-align: top;
+    }
+
+    hr {
+        border-top: 1px solid rgba(0, 0, 0, 0.2);
+    }
+
+    .wrapper {
+        position: relative;
+        height: 0;
+        transition: 1s;
+        overflow: hidden;
+    }
+
+    .vLine {
+        border-left: 1px solid rgba(0, 0, 0, 0.2);
+        height: 100%;
+        position: absolute;
+        left: 50%;
+        margin-left: -.5px;
+        top: 0;
+    }
+
+    .divider {
+        position: absolute;
+        top: 0;
+        transform: translateY(-100%);
+        transition: 1s;
+        width: 100%;
+        display: grid;
+        height: 100%;
+        grid-template-columns: 48% 4% 48%;
+    }
+
+
+
+    kbd {
+        padding: .1em .6em;
+        font-family: sans-serif;
+        font-size: 0.8em;
+        color: black;
+        text-shadow: 0 1px 0 white;
+        background-color: #eaeaea;
+        border: 1px solid black;
+        border-radius: 3px;
+        box-shadow: 0 1px 1px rgba(12, 13, 14, 0.15), inset 0 1px 0 0 #fff;
+    }
+
+    code {
+        font-family: monospace;
+        background-color: #eaeaea;
+        padding: 0.15em;
+    }
+
+    .container {
+        position: relative;
+        width: 36em;
+        height: 0;
+        margin: 0 auto;
+        overflow: hidden;
+        transition: 1s;
+    }
+
+
+
+    .preview {
+        background-color: #eee;
+        width: 35em;
+        height: 5.3em;
+        text-align: left;
+        padding: 0.5em;
+        margin: 0 auto;
+    }
+
+
+
+    .box {
+        border-top: #777 2px solid;
+        border-right: #e0e0e0 2px solid;
+        border-bottom: #e0e0e0 2px solid;
+        border-left: #777 2px solid;
+        background-color: white;
+    }
+
+    #result {
+        font-family: Monaco, monospace;
+        font-size: 2em;
+        position: absolute;
+        top: 0;
+        height: 1em;
+        width: 100%;
+        transform: translateY(-100%);
+        transition: 1s;
+    }
+
+    #closestValue {
+        font-size: 1em;
+        position: absolute;
+        top: 2em;
+        height: 1em;
+        width: 100%;
+        transform: translateY(-100%);
+        transition: 1s;
+    }
+    </style>
+</head>
+
+<body>
+    <script>
+        function convert() {
+			let value = document.getElementById("inputDec").value
+			let digitOne = Math.floor(Math.log(value) / Math.log(2)) - 1
+			let stepSize = Math.pow(2, digitOne - 3)
+			let digitTwo = (value - Math.pow(2, digitOne + 1)) / stepSize
+			let roundDigitTwo = Math.round(digitTwo)
+			let closestValue = Math.pow(2, digitOne + 1) + stepSize * roundDigitTwo
+			let result = digitOne.toString() + roundDigitTwo.toString(16)
+			document.getElementById("result").innerHTML = `<nobr>00 00 00 00 00 00 ${result} 40</nobr>`
+			document.getElementById("result").dataset.result = result
+			document.getElementById("closestValue").innerHTML = `Closest Value: ${closestValue}`
+			document.getElementsByClassName("box")[0].innerHTML = `<pre><span>00000000    00    00    00    00    00    00    ${digitOne}${roundDigitTwo.toString(16)}    40</span><span style="float: right;"> . . . . . . ${hex_to_ascii(result)} @    </span><br>00000008</pre>`
+			document.getElementById("result").style.transform = "translateY(0%)" // result
+			document.getElementById("closestValue").style.transform = "translateY(0%)" // result
+			document.getElementsByClassName("container")[0].style.height = "3.3em" // result container
+
+			document.getElementsByClassName("wrapper")[0].style.height = "calc(100vh - 20em)" // result container
+			document.getElementsByClassName("divider")[0].style.transform = "translateY(0%)" // result
+		}
+
+		function hex_to_ascii(str) {
+			var hex  = str.toString();
+			var str = '';
+			for (var n = 0; n < hex.length; n += 2) {
+				str += String.fromCharCode(parseInt(hex.substr(n, 2), 16));
+			}
+			if(str == "" || str == "" || str == "" || str == "" || str == "" || str == " ") return "."
+			return str;
+ 		}
+
+ 		function validateInput(inp) {
+ 			if(inp < 2) {
+ 				return 2 
+ 			} else if(inp > 100) {
+ 				if(inp > 100) return 100
+ 			} else {
+ 				return inp
+ 			}
+
+ 		}
+
+ 		function download() {
+  			var element = document.createElement('a');
+  			element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(document.getElementById("textarea").innerHTML + "00,00,00,00,00,00," + document.getElementById("result").dataset.result + ",40"));
+  			element.setAttribute('download', "RotMGtransparency.reg");
+
+  			element.style.display = 'none';
+  			document.body.appendChild(element);
+
+  			element.click();
+
+  			document.body.removeChild(element);
+		}
+
+	</script>
+    <h1 style="margin: 0; padding: 0.5em; box-shadow: 0 0 5px #888; color: white; text-shadow: 1px 1px 3px #000;background: linear-gradient(#045876, #1F7A8C);">RotMG registry transparency value calculator</h1>
+    <br>
+    Enter a value between 2 and 100:
+    <br>
+    <input type="number" id="inputDec" min="2" placeholder="10" max="100" oninput="this.value = validateInput(this.value); convert()" onclick="if(!this.value) this.value = 10; convert()" style="width: 3em; text-align: right; font-size: 2em">
+    <div class="container">
+        <div id="result">
+            Result shows here...
+        </div>
+        <div id="closestValue" title="Some values cannot be calculated exactly, so this is the closest value available.">
+            Closest value:
+        </div>
+    </div>
+    <br>
+    <div class="wrapper">
+        <div class="divider">
+            <div class="field">
+                <div>
+                    <h2><button onclick="download()" style="width: 20em;">
+                            <h2><img src="https://image.flaticon.com/icons/png/512/60/60721.png" style="height: 0.8em;"> Download .reg file</h2>
+                        </button></h2>
+                    <br>
+                    This file automatically modifies the registry entry upon execution.
+                    <br>
+                    If you don't trust this, you can do it manually.
+                </div>
+            </div>
+            <div class="field" style="background: white">
+                <mark style="background-color: white; z-index: 7; font-size: 2em;"><b>OR</b></mark>
+                <div class="vLine"></div>
+            </div>
+            <div class="field">
+                <div>
+                    <h2>How to set transparency manually:</h2>
+                    <span style="float:left;">1.</span>Open the Windows Registry Editor by pressing <kbd><img src="https://image.flaticon.com/icons/png/512/38/38466.png" alt="Windows key" style="height: 0.7em;"> + R</kbd> and enter in <code>regedit</code>.
+                    <br>
+                    <span style="float:left;">2.</span>Navigate to <code>Computer/HKEY_CURRENT_USER/SOFTWARE/DECA Live Operations GmbH/RotMGExalt</code>
+                    <br>
+                    <span style="float:left;">3.</span>Find the transparency entry called <code>transparencyValue_h1063501574</code> and copy in the number above.
+                    <br>
+                    Your Entry should look like this:
+                    <div class="preview">
+                        <u>V</u>alue data:
+                        <div class="box">
+                            <pre><span>00000000    00    00    00    00    00    00    00    00</span><span style="float: right;"> . . . . . . . .    </span><br>00000008</pre>
+                        </div>
+                    </div>
+                    <br>
+                    <span style="float:left;">4.</span>Restart your EXALT Client and you're good to go!
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <footer>
+        Made by <a href="author.html">matidfk</a>
+        <br>
+        Noticed any issues? Contact me.
+        <textarea id="textarea" style="display: none;">
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\SOFTWARE\DECA Live Operations GmbH\RotMGExalt]
+"transparencyValue_h1063501574"=hex:</textarea>
+    </footer>
+</body>
+
+</html>
