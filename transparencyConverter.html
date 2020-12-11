@@ -174,8 +174,15 @@
 		}
 
 	</script>
-    <h1 style="margin: 0; padding: 0.5em; box-shadow: 0 0 5px #888; color: white; text-shadow: 1px 1px 3px #000;background: linear-gradient(#045876, #1F7A8C);">RotMG registry transparency value calculator</h1>
-    <br>
+    <div class="navbar">
+        <a href="index.html" style="float: left;">Home</a>
+        <a href="about.html" style="float: right">About</a>
+    </div>
+
+    <div class="pageHeading">
+        <h1>RotMG Transparency</h1>
+    </div>
+
     Enter a value between 2 and 100:
     <br>
     <input type="number" id="inputDec" min="2" placeholder="10" max="100" oninput="this.value = validateInput(this.value); convert()" onclick="if(!this.value) this.value = 10; convert()" style="width: 3em; text-align: right; font-size: 2em">
