@@ -120,72 +120,83 @@
 <body>
     <script>
         function convert() {
-			let value = document.getElementById("inputDec").value
-			let digitOne = Math.floor(Math.log(value) / Math.log(2)) - 1
-			let stepSize = Math.pow(2, digitOne - 3)
-			let digitTwo = (value - Math.pow(2, digitOne + 1)) / stepSize
-			let roundDigitTwo = Math.round(digitTwo)
-			let closestValue = Math.pow(2, digitOne + 1) + stepSize * roundDigitTwo
-			let result = digitOne.toString() + roundDigitTwo.toString(16)
-			document.getElementById("result").innerHTML = `<nobr>00 00 00 00 00 00 ${result} 40</nobr>`
-			document.getElementById("result").dataset.result = result
-			document.getElementById("closestValue").innerHTML = `Closest Value: ${closestValue}`
-			document.getElementsByClassName("box")[0].innerHTML = `<pre><span>00000000    00    00    00    00    00    00    ${digitOne}${roundDigitTwo.toString(16)}    40</span><span style="float: right;"> . . . . . . ${hex_to_ascii(result)} @    </span><br>00000008</pre>`
-			document.getElementById("result").style.transform = "translateY(0%)" // result
-			document.getElementById("closestValue").style.transform = "translateY(0%)" // result
-			document.getElementsByClassName("container")[0].style.height = "3.3em" // result container
+            let value = document.getElementById("inputDec").value
+            let result
+            let closestValue
+            if(value == 0) {
+                result = "00    00"
+                closestValue = "0"
+            } else if(value == 1) {
+                result = "00    40"
+                closestValue = "2"
+            } else {
+                let digitOne = Math.floor(Math.log(value) / Math.log(2)) - 1
+                let stepSize = Math.pow(2, digitOne - 3)
+                let digitTwo = (value - Math.pow(2, digitOne + 1)) / stepSize
+                let roundDigitTwo = Math.round(digitTwo)
+                closestValue = Math.pow(2, digitOne + 1) + stepSize * roundDigitTwo
+                result = digitOne.toString() + roundDigitTwo.toString(16) + "    40"
 
-			document.getElementsByClassName("wrapper")[0].style.height = "calc(100vh - 20em)" // result container
-			document.getElementsByClassName("divider")[0].style.transform = "translateY(0%)" // result
-		}
+            }
+            document.getElementById("result").innerHTML = `<nobr>00 00 00 00 00 00 ${result.substring(0,2)} ${result.slice(-2)}</nobr>`
+            document.getElementById("result").dataset.result = result
+            document.getElementById("closestValue").innerHTML = `Closest Value: ${closestValue}`
+            document.getElementsByClassName("box")[0].innerHTML = `<pre><span>00000000    00    00    00    00    00    00    ${result}</span><span style="float: right;"> . . . . . . ${hex_to_ascii(result.substring(0, 2))} ${hex_to_ascii(result.slice(-2))}    </span><br>00000008</pre>`
+            document.getElementById("result").style.transform = "translateY(0%)" // result
+            document.getElementById("closestValue").style.transform = "translateY(0%)" // result
+            document.getElementsByClassName("container")[0].style.height = "3.3em" // result container
 
-		function hex_to_ascii(str) {
-			var hex  = str.toString();
-			var str = '';
-			for (var n = 0; n < hex.length; n += 2) {
-				str += String.fromCharCode(parseInt(hex.substr(n, 2), 16));
-			}
-			if(str == "" || str == "" || str == "" || str == "" || str == "" || str == " ") return "."
-			return str;
- 		}
+            document.getElementsByClassName("wrapper")[0].style.height = "calc(100vh - 20em)" // result container
+            document.getElementsByClassName("divider")[0].style.transform = "translateY(0%)" // result
 
- 		function validateInput(inp) {
- 			if(inp < 2) {
- 				return 2 
- 			} else if(inp > 100) {
- 				if(inp > 100) return 100
- 			} else {
- 				return inp
- 			}
+            
+        }
 
- 		}
+        function hex_to_ascii(str) {
+            var hex  = str.toString();
+            var str = '';
+            for (var n = 0; n < hex.length; n += 2) {
+                str += String.fromCharCode(parseInt(hex.substr(n, 2), 16));
+            }
+            if(str == "" || str == "" || str == "" || str == "" || str == "" || str == " ") return "."
+            return str;
+        }
 
- 		function download() {
-  			var element = document.createElement('a');
-  			element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(document.getElementById("textarea").innerHTML + "00,00,00,00,00,00," + document.getElementById("result").dataset.result + ",40"));
-  			element.setAttribute('download', "RotMGtransparency.reg");
+        function validateInput(inp) {
+            if(inp < 2) {
+                return 2 
+            } else if(inp > 100) {
+                if(inp > 100) return 100
+            } else {
+                return inp
+            }
 
-  			element.style.display = 'none';
-  			document.body.appendChild(element);
+        }
 
-  			element.click();
+        function download() {
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(document.getElementById("textarea").innerHTML + "00,00,00,00,00,00," + document.getElementById("result").dataset.result.substring(0,2) + "," + document.getElementById("result").dataset.result.slice(-2)));
+            element.setAttribute('download', "RotMGtransparency.reg");
 
-  			document.body.removeChild(element);
-		}
+            element.style.display = 'none';
+            document.body.appendChild(element);
 
-	</script>
+            element.click();
+
+            document.body.removeChild(element);
+        }
+
+    </script>
     <div class="navbar">
         <a href="index.html" style="float: left;">Home</a>
         <a href="about.html" style="float: right">About</a>
     </div>
-
     <div class="pageHeading">
         <h1>RotMG Transparency</h1>
     </div>
-
-    Enter a value between 2 and 100:
+    Enter a value between 0 and 100:
     <br>
-    <input type="number" id="inputDec" min="2" placeholder="10" max="100" oninput="this.value = validateInput(this.value); convert()" onclick="if(!this.value) this.value = 10; convert()" style="width: 3em; text-align: right; font-size: 2em">
+    <input type="number" id="inputDec" min="0" placeholder="10" max="100" oninput="convert()" onclick="if(!this.value) this.value = 10; convert()" style="width: 3em; text-align: right; font-size: 2em">
     <div class="container">
         <div id="result">
             Result shows here...
