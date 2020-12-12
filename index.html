@@ -5,26 +5,26 @@
     <title>Index</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <style type="text/css">
-    .contents {
+    .content {
         display: grid;
         grid-template-columns: 50% 50%;
-        grid-template-rows: repeat(6, 200px);
+        grid-template-rows: repeat(4, 20%px);
     }
 
-    .contents span {
-    	display: flex;
-    	justify-content: center;
-    	align-items: center;
+    .content span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
-    .contents span a {
-    	text-decoration: none;
-    	font-size: 3em;
-    	color: black;
+    .content span a {
+        text-decoration: none;
+        font-size: 3em;
+        color: black;
     }
 
     .parallaxL {
-        min-height: 200px;
+        min-height: 100%;
         background-attachment: fixed;
         background-position: left;
         background-repeat: no-repeat;
@@ -32,7 +32,7 @@
     }
 
     .parallaxR {
-        min-height: 200px;
+        min-height: 100%;
         background-attachment: fixed;
         background-position: right;
         background-repeat: no-repeat;
@@ -42,29 +42,37 @@
 </head>
 
 <body>
-    <div class="navbar">
-        <a href="index.html" style="float: left;">Home</a>
-        <a href="about.html" style="float: right">About</a>
-    </div>
-    <div class="pageHeading">
-        <h1>Index page</h1>
-    </div>
-    <div style="height: 40vh"></div>
-    <div class="contents">
-        <a href="transparencyConverter.html"><div class="parallaxL" style="background-image: url('https://i.redd.it/qs8grvd6rdm31.png')"></div></a>
-        <span><a href="transparencyConverter.html">RotMG Transparency Converter</a></span>
+    <div class="pageContainer">
+        <div class="navbar">
+            <a href="index.html" style="float: left;">Home</a>
+            <a href="about.html" style="float: right">About</a>
+        </div>
+        <div class="mainPage">
+            <div class="pageHeading">
+                <h1>Index page</h1>
+            </div>
+            <!-- <div style="height: 400px;"></div> -->
+            <div class="content">
+                <a href="transparencyConverter.html">
+                    <div class="parallaxL" style="background-image: url('https://i.redd.it/qs8grvd6rdm31.png')"></div>
+                </a>
+                <span><a href="transparencyConverter.html">RotMG Transparency Converter</a></span>
+                <span><a href="shortcutGenerator.html">Mule Shortcut Generator</a></span>
+                <a href="shortcutGenerator.html">
+                    <div class="parallaxR" style="background-image: url('https://i.redd.it/efvz5r67zh401.jpg')"></div>
+                </a>
+                <a href="transparencyConverter.html">
+                    <div class="parallaxL" style="background-image: url('https://i.pinimg.com/originals/a0/a7/0c/a0a70ccaa87d8bfb350842a5be822899.jpg')"></div>
+                </a>
+                <span><a href="transparencyConverter.html">coming soon</a></span>
+                <span><a href="transparencyConverter.html">coming soon</a></span>
+                <a href="transparencyConverter.html">
+                    <div class="parallaxR" style="background-image: url('https://i.pinimg.com/originals/a0/a7/0c/a0a70ccaa87d8bfb350842a5be822899.jpg')"></div>
+                </a>
+            </div>
 
-
-        <span><a href="transparencyConverter.html">coming soon</a></span>
-        <a href="transparencyConverter.html"><div class="parallaxR" style="background-image: url('https://i.pinimg.com/originals/33/df/5f/33df5f783b91cc404c55343a53806080.jpg')"></div></a>
-
-
-        <a href="transparencyConverter.html"><div class="parallaxL" style="background-image: url('https://i.pinimg.com/originals/a0/a7/0c/a0a70ccaa87d8bfb350842a5be822899.jpg')"></div></a>
-        <span><a href="transparencyConverter.html">coming soon</a></span>
-
-
-        <span><a href="transparencyConverter.html">coming soon</a></span>
-        <a href="transparencyConverter.html"><div class="parallaxR" style="background-image: url('https://i.pinimg.com/originals/a0/a7/0c/a0a70ccaa87d8bfb350842a5be822899.jpg')"></div></a>
+           <!--  <div style="height: 400px;"></div> -->
+        </div>
         <footer>
             Made by <a href="author.html">matidfk</a>
             <br>
