@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+.navbar {
+    position: fixed;
+    z-index: 999;
+    background-color: #2F3E46;
+    width: 100%;
+    text-align: center;
+    font-size: min(max(1vw, 12px), 20px);
+}
+
+.navbar-active {
+    color: #84A98C !important;
+}
+
+.navbar a {
+    padding: 20px;
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+}
+
+.navbar a:hover {
+    background-color: #354F52;
+}
+
+main {
+    padding-top: calc(1em + (2 * 20px) - 2px);
+    padding-bottom: 4em;
+    text-align: center;
+}
+
+footer {
+    position: absolute;
+    background-color: #CAD2C5;
+    color: #555;
+    bottom: 0;
+    width: 100%;
+    padding: 1em 0;
+    text-align: center;
+    justify-content: center;
+}
