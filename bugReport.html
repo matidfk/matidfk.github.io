@@ -2,42 +2,44 @@
 <html>
 
 <head>
-    <title>Submit a bug report</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>site</title>
+    <link rel="stylesheet" href="styleNew.css">
     <style type="text/css">
-    	#bugReportForm {
-    		display: grid;
-    		width: 33%;
-    		height: 50%;
-    		grid-template-rows: 5% 10% 40% 10% 25%
-    	}
+    #bugReportForm {
+        display: grid;
+        width: 33%;
+        height: 50%;
+        grid-template-rows: 5% 10% 40% 10% 25%
+    }
     </style>
 </head>
 
 <body>
-    <div class="navbar">
-        <a href="index.html" style="float: left;">Home</a>
-        <a href="about.html" style="float: right">About</a>
+    <div id="page-container">
+        <div class="navbar">
+            <a href="index.html" style="float: left;">Home</a>
+            <a href="about.html" style="float: right;">About</a>
+        </div>
+        <main>
+            <h1>File an issue on the <a href="https://github.com/matidfk/matidfk.github.io/issues">github page</a> or fill in this form:</h1>
+            <div style="height: 80vh; width: 100%; margin: auto auto; text-align: center">
+                <form action="https://formspree.io/f/mvovwbbg" method="POST" id="bugReportForm">
+                    <span style="width: 100%">(optional) Your email: <input type="email" name="email" style="border-radius: 0.5em; border-width: 2px"></span>
+                    <br>
+                    <textarea name="bugDetails" form="bugReportForm" placeholder="Describe the bug in detail..." style="border-radius: 0.5em; border-width: 2px; resize: none;" required></textarea>
+                    <br>
+                    <div class="field">
+                        <input type="submit" value="Send bug report" class="button" style="width: 40%; height: 50%; border-width: 2px">
+                    </div>
+                </form>
+            </div>
+        </main>
+        <footer>
+            Made by <a href="author.html">matidfk</a>
+            <br>
+            Noticed any issues? Contact me or <a href="bugReport.html">Report a bug</a>.
+        </footer>
     </div>
-    <div class="pageHeading">
-        <h1>Submit a bug report</h1>
-    </div>
-    <div class="field" style="height: 80vh">
-            <form action="https://formspree.io/f/mvovwbbg" method="POST" id="bugReportForm">
-            	<span style="width: 100%">(optional) Your email: <input type="email" name="email" style="border-radius: 0.5em; border-width: 2px"></span>
-                <br>
-                <textarea name="bugDetails" form="bugReportForm" placeholder="Describe the bug in detail..." style="border-radius: 0.5em; border-width: 2px; resize: none;" required></textarea>
-                <br>
-                <div class="field">
-                	<input type="submit" value="Send bug report" class="button" style="width: 40%; height: 50%; border-width: 2px">
-            	</div>
-            </form>
-    </div>
-    <footer>
-        Made by <a href="author.html">matidfk</a>
-        <br>
-        Noticed any issues? Contact me or <a href="bugReport.html">Report a bug</a>.
-    </footer>
 </body>
 
 </html>

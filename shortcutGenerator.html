@@ -2,9 +2,13 @@
 <html>
 
 <head>
-    <title>RotMG Mule Shortcut Generator</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>site</title>
+    <link rel="stylesheet" href="styleNew.css">
     <style type="text/css">
+    .content {
+        height: 78vh;
+    }
+
     .vLine {
         border-left: 1px solid rgba(0, 0, 0, 0.2);
         height: 100%;
@@ -15,7 +19,7 @@
     }
 
     .divider {
-        height: calc(100% - 7em);
+        height: calc(100% - 3em);
         display: grid;
         grid-template-columns: 48% 4% 48%;
 
@@ -30,116 +34,114 @@
         vertical-align: top;
     }
     </style>
-    <script>
-        function switchInputType() {
-    		if(document.getElementById('inputs').dataset.type == "plaintext") {
-    			document.getElementById('inputs').dataset.type = "base64"
-    			document.getElementById('inputEmail').placeholder = "base64 e-mail"
-    			document.getElementById('inputPassword').placeholder = "base64 password"
-    			document.getElementById('switchButton').innerHTML = "Switch to<br>plaintext"
-    		} else if(document.getElementById('inputs').dataset.type == "base64") {
-    			document.getElementById('inputs').dataset.type = "plaintext"
-    			document.getElementById('inputEmail').placeholder = "plaintext e-mail"
-    			document.getElementById('inputPassword').placeholder = "plaintext password"
-    			document.getElementById('switchButton').innerHTML = "Switch to<br>base64"
-    		}
-    	}
-
-
-    	function createString() {
-    		let dir = document.getElementById('inputDir').value
-    		let email = document.getElementById('inputEmail').value
-    		let password = document.getElementById('inputPassword').value
-    		let str
-    		if(document.getElementById('inputs').dataset.type == "plaintext") { // convert to base64 if not already
-    			email = btoa(email)
-    			password = btoa(password)
-    		}
-
-    		if(dir.length != 0 && email.length != 0 && password.length != 0) {
-    			str = `"${dir}" "data:{platform:Deca,password:${password},guid:${email},env:4}"`
-    			document.getElementById('result').textContent = str
-    		}
-    	}
-
-    </script>
 </head>
 
 <body>
-    <div class="pageContainer">
+    <script>
+        function switchInputType() {
+            if(document.getElementById('inputs').dataset.type == "plaintext") {
+                document.getElementById('inputs').dataset.type = "base64"
+                document.getElementById('inputEmail').placeholder = "base64 e-mail"
+                document.getElementById('inputPassword').placeholder = "base64 password"
+                document.getElementById('switchButton').innerHTML = "Switch to<br>plaintext"
+            } else if(document.getElementById('inputs').dataset.type == "base64") {
+                document.getElementById('inputs').dataset.type = "plaintext"
+                document.getElementById('inputEmail').placeholder = "plaintext e-mail"
+                document.getElementById('inputPassword').placeholder = "plaintext password"
+                document.getElementById('switchButton').innerHTML = "Switch to<br>base64"
+            }
+        }
+
+
+        function createString() {
+            let dir = document.getElementById('inputDir').value
+            let email = document.getElementById('inputEmail').value
+            let password = document.getElementById('inputPassword').value
+            let str
+            if(document.getElementById('inputs').dataset.type == "plaintext") { // convert to base64 if not already
+                email = btoa(email)
+                password = btoa(password)
+            }
+
+            if(dir.length != 0 && email.length != 0 && password.length != 0) {
+                str = `"${dir}" "data:{platform:Deca,password:${password},guid:${email},env:4}"`
+                document.getElementById('result').textContent = str
+            }
+        }
+
+    </script>
+    <div id="page-container">
         <div class="navbar">
             <a href="index.html" style="float: left;">Home</a>
-            <a href="about.html" style="float: right">About</a>
+            <a href="about.html" style="float: right;">About</a>
         </div>
-        <div class="mainPage">
-            <div class="pageHeading">
-                <h1>Mule Shortcut Generator</h1>
-            </div>
+        <main>
             <div class="content">
-            	<br>
-                In order to create a Mule account shortcut, you will need your email and password for said account.
-                <br>
-                Below are 2 ways to make one:
-                <br>
-                <div class="divider">
-                    <div class="field" style="height: 100%;">
-                        <!-- left side -->
-                        <div style="width: 100%">
-                            <h2>Generate the string automatically</h2>
-                            <br>
-                            Enter your account email and password in the boxes below.
-                            <br>
-                            You can either do this in plain text or use an <a href="https://www.base64encode.org/">external base64 encoder</a>.
-                            <br>
-                            <span style="font-size: 0.8em; font-weight: 900">(NOTE: THIS IS NOT ENCRYPTION, AND DOES NOT MAKE THE DATA SECURE)</span>
-                            <br style="margin-top: 0.5em">
-                            
-                            <div style="display: grid; width: 65%; margin: 0 auto; grid-template-columns: 60% 40%;  grid-template-areas: 'dir dir' 'input1 button' 'input2 button';" data-type="plaintext" id="inputs">
-                            	<div style="grid-area: dir">
-                            		<input placeholder="RotMG Exalt.exe location" title="Typically located in C:\Users\[username]\Documents\RealmOfTheMadGod\Production\RotMG Exalt.exe" oninput="createString()" id="inputDir" style="grid-area: dir; padding: 0.2em; margin: 0.2em; width: calc(100% - 3em)">
-                            		<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Blue_question_mark_icon.svg/1200px-Blue_question_mark_icon.svg.png" title="Typically located in C:\Users\[username]\Documents\RealmOfTheMadGod\Production\RotMG Exalt.exe" style="height: 0.7em">
-                            	</div>
-                                <input placeholder="plaintext e-mail" type="email" id="inputEmail" style="padding: 0.2em; margin: 0.2em;" oninput="createString()">
-                                <button style="grid-area: button; padding: 0.2em; margin: 0.2em;" onclick="switchInputType(); createString()" id="switchButton">
-                                    Switch to<br>base64
-                                </button>
-                                <input placeholder="plaintext password" type="password" id=inputPassword style="padding: 0.2em; margin: 0.2em;" oninput="createString()">
-                            </div>
+                <div style="height: 100%">
+                    <br>
+                    In order to create a Mule account shortcut, you will need your email and password for said account.
+                    <br>
+                    Below are 2 ways to make one:
+                    <br>
+                    <div class="divider">
+                        <div class="field" style="height: 100%;">
+                            <!-- left side -->
                             <div style="width: 100%">
-                                <code id="result" style="max-width: 65%">Final string will appear here</code>
+                                <h2>Generate the string automatically</h2>
+                                <br>
+                                Enter your account email and password in the boxes below.
+                                <br>
+                                You can either do this in plain text or use an <a href="https://www.base64encode.org/">external base64 encoder</a>.
+                                <br>
+                                <span style="font-size: 0.8em; font-weight: 900">(NOTE: THIS IS NOT ENCRYPTION, AND DOES NOT MAKE THE DATA SECURE)</span>
+                                <br style="margin-top: 0.5em">
+                                <div style="display: grid; width: 65%; margin: 0 auto; grid-template-columns: 60% 40%;  grid-template-areas: 'dir dir' 'input1 button' 'input2 button';" data-type="plaintext" id="inputs">
+                                    <div style="grid-area: dir">
+                                        <input placeholder="RotMG Exalt.exe location" title="Typically located in C:\Users\[username]\Documents\RealmOfTheMadGod\Production\RotMG Exalt.exe" oninput="createString()" id="inputDir" style="grid-area: dir; padding: 0.2em; margin: 0.2em; width: calc(100% - 3em)">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Blue_question_mark_icon.svg/1200px-Blue_question_mark_icon.svg.png" title="Typically located in C:\Users\[username]\Documents\RealmOfTheMadGod\Production\RotMG Exalt.exe" style="height: 0.7em">
+                                    </div>
+                                    <input placeholder="plaintext e-mail" type="email" id="inputEmail" style="padding: 0.2em; margin: 0.2em;" oninput="createString()">
+                                    <button style="grid-area: button; padding: 0.2em; margin: 0.2em;" onclick="switchInputType(); createString()" id="switchButton">
+                                        Switch to<br>base64
+                                    </button>
+                                    <input placeholder="plaintext password" type="password" id=inputPassword style="padding: 0.2em; margin: 0.2em;" oninput="createString()">
+                                </div>
+                                <div style="width: 80%; overflow-wrap: break-word; margin: auto auto;">
+                                    <code id="result" style="max-width: 65%; margin: auto auto;">Final string will appear here</code>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="field" style="position: relative; height: 100%;">
-                        <mark style="background-color: white; z-index: 7; font-size: 2em;">OR</mark>
-                        <div class="vLine"></div>
-                    </div>
-                    <div class="field" style="height: 100%;">
-                        <!-- right side -->
-                        <div>
-                        	<h2>Create the string manually</h2>
-                        	<span style="float:left;">1.</span>Find your RotMG Exalt.exe directory. (Typically located in <code>C:\Users\[username]\Documents\RealmOfTheMadGod\Production\RotMG Exalt.exe</code>)
-                        	<br>
-                        	<span style="float:left;">2.</span>Make a shortcut to this file.
-                        	<br>
-                        	<span style="float:left;">3.</span>Open the shortcut properties and go to the "Shortcut" tab.
-                        	<br>
-                        	<span style="float:left;">4.</span>Find the field called "<u>T</u>arget:", and add a space at the end.
-                        	<br>
-                        	<span style="float:left;">5.</span>Copy and paste this string after the space: <code>"data:{platform:Deca,password:base64password,guid:base64email,env:4}"</code>
-                        	<br>
-                        	<span style="float:left;">6.</span>Now, you need your base64 email and base64 password. You can use sites like <a href="https://www.base64encode.org/">this one</a> to encode them into base64.
-                        	<br>
-                        	<span style="float:left;">7.</span>Go back to your shortcut and replace base64password and base64email with the values you got off the site.
-                        	<br>
-                        	<span style="float:left;">8.</span>Click apply and Launch the client from the shortcut. Note: this only works for DECA accounts, not steam. However, you can still open steam clients first and then open mules with the shortcut.
-                    	</div>
+                        <div class="field" style="position: relative; height: 100%;">
+                            <mark style="background-color: white; z-index: 7; font-size: 2em; margin: auto auto">OR</mark>
+                            <div class="vLine"></div>
+                        </div>
+                        <div class="field" style="height: 100%;">
+                            <!-- right side -->
+                            <div>
+                                <h2>Create the string manually</h2>
+                                <span style="float:left;">1.</span>Find your RotMG Exalt.exe directory. (Typically located in <code>C:\Users\[username]\Documents\RealmOfTheMadGod\Production\RotMG Exalt.exe</code>)
+                                <br>
+                                <span style="float:left;">2.</span>Make a shortcut to this file.
+                                <br>
+                                <span style="float:left;">3.</span>Open the shortcut properties and go to the "Shortcut" tab.
+                                <br>
+                                <span style="float:left;">4.</span>Find the field called "<u>T</u>arget:", and add a space at the end.
+                                <br>
+                                <span style="float:left;">5.</span>Copy and paste this string after the space: <code>"data:{platform:Deca,password:base64password,guid:base64email,env:4}"</code>
+                                <br>
+                                <span style="float:left;">6.</span>Now, you need your base64 email and base64 password. You can use sites like <a href="https://www.base64encode.org/">this one</a> to encode them into base64.
+                                <br>
+                                <span style="float:left;">7.</span>Go back to your shortcut and replace base64password and base64email with the values you got off the site.
+                                <br>
+                                <span style="float:left;">8.</span>Click apply and Launch the client from the shortcut. Note: this only works for DECA accounts, not steam. However, you can still open steam clients first and then open mules with the shortcut.
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <br>
                 Credit: <a href="https://www.reddit.com/r/RotMG/comments/iy5cfy/guide_opening_multiple_rotmg_exalt_clients_at_once/">https://www.reddit.com/r/RotMG/comments/iy5cfy/guide_opening_multiple_rotmg_exalt_clients_at_once/</a>, <a href="https://imgur.com/a/1afO1X3">https://imgur.com/a/1afO1X3</a>
             </div>
-        </div>
+        </main>
         <footer>
             Made by <a href="author.html">matidfk</a>
             <br>

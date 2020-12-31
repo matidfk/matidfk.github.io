@@ -2,77 +2,67 @@
 <html>
 
 <head>
-    <title>Index</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>site</title>
+    <link rel="stylesheet" href="styleNew.css">
     <style type="text/css">
-    .content {
-        display: grid;
-        grid-template-columns: 50% 50%;
-        grid-template-rows: repeat(4, 20%px);
-    }
+    	#grid-rows {
+    		display: grid;
+    		grid-template-columns: 100%;
+    		grid-template-rows: repeat(4, 400px)
+    	}
 
-    .content span {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+    	#grid-rows a {
+            text-decoration: none;
+            position: relative;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            min-height: 100%;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: 100%;
+    	}
+        #grid-rows a span {
+            line-height: calc(400px - 1em - 150px);
+            width: calc(50% - 2 * (100px));
+            height: calc(100% - 2 * (100px));
+            margin: 100px;
+            font-size: 3em;
+            color: white;
+            font-weight: 600;
+            text-shadow: 0 0 2px black;
+            outline: 2px solid white;
+            box-shadow: 0px 0px 20px black;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
 
-    .content span a {
-        text-decoration: none;
-        font-size: 3em;
-        color: black;
-    }
-
-    .parallaxL {
-        min-height: 100%;
-        background-attachment: fixed;
-        background-position: left;
-        background-repeat: no-repeat;
-        background-size: 50% auto;
-    }
-
-    .parallaxR {
-        min-height: 100%;
-        background-attachment: fixed;
-        background-position: right;
-        background-repeat: no-repeat;
-        background-size: 50% auto;
-    }
+    	
     </style>
 </head>
 
 <body>
-    <div class="pageContainer">
+    <div id="page-container">
         <div class="navbar">
             <a href="index.html" style="float: left;">Home</a>
-            <a href="about.html" style="float: right">About</a>
+            <a href="about.html" style="float: right;">About</a>
         </div>
-        <div class="mainPage">
-            <div class="pageHeading">
-                <h1>Index page</h1>
-            </div>
-            <!-- <div style="height: 400px;"></div> -->
-            <div class="content">
-                <a href="transparencyConverter.html">
-                    <div class="parallaxL" style="background-image: url('https://i.redd.it/qs8grvd6rdm31.png')"></div>
+        <main>
+            <div id="grid-rows">
+                <a href="transparencyConverter.html" style="background-image: url('https://i.redd.it/qs8grvd6rdm31.png')">
+                    <span style="float: right">RotMG Transparency converter</span>
                 </a>
-                <span><a href="transparencyConverter.html">RotMG Transparency Converter</a></span>
-                <span><a href="shortcutGenerator.html">Mule Shortcut Generator</a></span>
-                <a href="shortcutGenerator.html">
-                    <div class="parallaxR" style="background-image: url('https://i.redd.it/efvz5r67zh401.jpg')"></div>
+                <a href="shortcutGenerator.html" style="background-image: url('https://i.redd.it/efvz5r67zh401.jpg')">
+                	<span style="float: left">RotMG Mule shortcut generator</span>
                 </a>
-                <a href="ricepuritytest.html">
-                    <div class="parallaxL" style="background-image: url('https://i.pinimg.com/originals/a0/a7/0c/a0a70ccaa87d8bfb350842a5be822899.jpg')"></div>
+                <a href="ricepuritytest.html" style="background-image: url('https://i.pinimg.com/originals/a0/a7/0c/a0a70ccaa87d8bfb350842a5be822899.jpg')">
+                    <span style="float: right">Rice Purity Test</span>
                 </a>
-                <span><a href="ricepuritytest.html">Rice purity test</a></span>
-                <span><a href="transparencyConverter.html">coming soon</a></span>
-                <a href="transparencyConverter.html">
-                    <div class="parallaxR" style="background-image: url('https://i.pinimg.com/originals/a0/a7/0c/a0a70ccaa87d8bfb350842a5be822899.jpg')"></div>
+                <a href="transparencyConverter.html" style="background-image: url('https://i.pinimg.com/originals/a0/a7/0c/a0a70ccaa87d8bfb350842a5be822899.jpg')">
+                	<span style="float: left">cooming soon</span>
                 </a>
             </div>
-
-           <!--  <div style="height: 400px;"></div> -->
-        </div>
+        </main>
         <footer>
             Made by <a href="author.html">matidfk</a>
             <br>

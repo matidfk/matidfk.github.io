@@ -2,9 +2,17 @@
 <html>
 
 <head>
-    <title>ROTMG Transparency Calculator</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>site</title>
+    <link rel="stylesheet" href="styleNew.css">
     <style type="text/css">
+
+    .content {
+        height: 78vh;
+    }
+
+    .field {
+        margin: auto auto;
+    }
     br {
         display: block;
         content: "";
@@ -140,7 +148,7 @@
             document.getElementById("closestValue").style.transform = "translateY(0%)" // result
             document.getElementsByClassName("container")[0].style.height = "3.3em" // result container
 
-            document.getElementsByClassName("wrapper")[0].style.height = "calc(100% - 8em)" // result container
+            document.getElementsByClassName("wrapper")[0].style.height = "100%" // result container
             document.getElementsByClassName("divider")[0].style.transform = "translateY(0%)" // result
 
             
@@ -180,15 +188,12 @@
             document.body.removeChild(element);
         }
     </script>
-    <div class="pageContainer">
+    <div id="page-container">
         <div class="navbar">
             <a href="index.html" style="float: left;">Home</a>
-            <a href="about.html" style="float: right">About</a>
+            <a href="about.html" style="float: right;">About</a>
         </div>
-        <div class="mainPage">
-            <div class="pageHeading">
-                <h1>RotMG Transparency Converter</h1>
-            </div>
+        <main>
             <div class="content">
                 <div>
                     Enter a value between 0 and 100:
@@ -204,58 +209,56 @@
                     </div>
                     <br>
                 </div>
-                <div class="wrapper">
-                    <div class="divider">
-                        <div class="field">
-                            <div>
-                                <h2><button onclick="download()" style="width: 20em;">
-                                        <h2><img src="https://image.flaticon.com/icons/png/512/60/60721.png" style="height: 0.8em;"> Download .reg file</h2>
-                                    </button></h2>
-                                <br>
-                                This file automatically modifies the registry entry upon execution.
-                                <br>
-                                If you don't trust this, you can do it manually.
-                            </div>
-                        </div>
-                        <div class="field">
-                            <mark style="background-color: white; z-index: 7; font-size: 2em;"><b>OR</b></mark>
-                            <div class="vLine"></div>
-                        </div>
-                        <div class="field">
-                            <div>
-                                <h2>How to set transparency manually:</h2>
-                                <span style="float:left;">1.</span>Open the Windows Registry Editor by pressing <kbd><img src="https://image.flaticon.com/icons/png/512/38/38466.png" alt="Windows key" style="height: 0.7em;"> + R</kbd> and enter in <code>regedit</code>.
-                                <br>
-                                <span style="float:left;">2.</span>Navigate to <code>Computer/HKEY_CURRENT_USER/SOFTWARE/DECA Live Operations GmbH/RotMGExalt</code>
-                                <br>
-                                <span style="float:left;">3.</span>Find the transparency entry called <code>transparencyValue_h1063501574</code> and copy in the number above.
-                                <br>
-                                Your Entry should look like this:
-                                <div class="preview">
-                                    <u>V</u>alue data:
-                                    <div class="box">
-                                        <pre><span>00000000    00    00    00    00    00    00    00    00</span><span style="float: right;"> . . . . . . . .    </span><br>00000008</pre>
-                                    </div>
+                <div style="height: 78vh">
+                    <div class="wrapper">
+                        <div class="divider">
+                            <div class="field">
+                                <div>
+                                    <h2><button onclick="download()" style="width: 20em;">
+                                            <h2><img src="https://image.flaticon.com/icons/png/512/60/60721.png" style="height: 0.8em;"> Download .reg file</h2>
+                                        </button></h2>
+                                    <br>
+                                    This file automatically modifies the registry entry upon execution.
+                                    <br>
+                                    If you don't trust this, you can do it manually.
                                 </div>
-                                <br>
-                                <span style="float:left;">4.</span>Restart your EXALT Client and you're good to go!
+                            </div>
+                            <div class="field">
+                                <mark style="background-color: white; z-index: 7; font-size: 2em;"><b>OR</b></mark>
+                                <div class="vLine"></div>
+                            </div>
+                            <div class="field">
+                                <div>
+                                    <h2>How to set transparency manually:</h2>
+                                    <span style="float:left;">1.</span>Open the Windows Registry Editor by pressing <kbd><img src="https://image.flaticon.com/icons/png/512/38/38466.png" alt="Windows key" style="height: 0.7em;"> + R</kbd> and enter in <code>regedit</code>.
+                                    <br>
+                                    <span style="float:left;">2.</span>Navigate to <code>Computer/HKEY_CURRENT_USER/SOFTWARE/DECA Live Operations GmbH/RotMGExalt</code>
+                                    <br>
+                                    <span style="float:left;">3.</span>Find the transparency entry called <code>transparencyValue_h1063501574</code> and copy in the number above.
+                                    <br>
+                                    Your Entry should look like this:
+                                    <div class="preview">
+                                        <u>V</u>alue data:
+                                        <div class="box">
+                                            <pre><span>00000000    00    00    00    00    00    00    00    00</span><span style="float: right;"> . . . . . . . .    </span><br>00000008</pre>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <span style="float:left;">4.</span>Restart your EXALT Client and you're good to go!
+                                </div>
                             </div>
                         </div>
                     </div>
                     <hr>
                 </div>
             </div>
-        </div>
+        </main>
         <footer>
             Made by <a href="author.html">matidfk</a>
             <br>
             Noticed any issues? Contact me or <a href="bugReport.html">Report a bug</a>.
-            <textarea id="textarea" style="display: none;">
-Windows Registry Editor Version 5.00
-
-[HKEY_CURRENT_USER\SOFTWARE\DECA Live Operations GmbH\RotMGExalt]
-"transparencyValue_h1063501574"=hex:</textarea>
         </footer>
+    </div>
 </body>
 
 </html>
