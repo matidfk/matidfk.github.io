@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>site</title>
+    <title>Unofficial Rice purity test</title>
     <link rel="stylesheet" href="styleNew.css">
     <style type="text/css">
     #questions {
@@ -36,48 +36,49 @@
     }
 
     .card input {
-    	position: absolute;
-    	bottom: 0.5em;
-    	transform: translateX(-50%);
+        position: absolute;
+        bottom: 0.5em;
+        transform: translateX(-50%);
         height: 2em;
         width: 2em;
     }
 
     button {
-    	font-size: 2em;
-    	width: 50%;
-    	height: 3em;
-    	border-radius: 0.5em;
-    	background-color: rgba(255, 119, 100, 0.3);
-    	outline: none;
+        font-size: 2em;
+        width: 50%;
+        height: 3em;
+        border-radius: 0.5em;
+        background-color: rgba(255, 119, 100, 0.3);
+        outline: none;
     }
 
     button:active {
-    	background-color: rgba(200, 80, 60, 0.3);
+        background-color: rgba(200, 80, 60, 0.3);
     }
 
     #score span {
-    	font-weight: bolder;
-    	font-size: 5em;
-    	color: red;
-    	text-shadow: 1px 1px 3px black;
+        font-weight: bolder;
+        font-size: 5em;
+        color: red;
+        text-shadow: 1px 1px 3px black;
     }
     </style>
 </head>
 
 <body style="background-image: url(https://ricepurity.github.io/owl.png)">
-	<script>
-		function calculateScore() {
-			
-			let d = document.createElement("div");
-			d.id = "score";
-			d.innerHTML = `<h1>Your score:</h1><br><span>${100 - document.querySelectorAll('input[type="checkbox"]:checked').length}</span>`
-			document.getElementsByTagName('main')[0].innerHTML = "<h1>(unofficial) Rice purity test</h1>";
-			document.getElementsByTagName('main')[0].appendChild(d);
-			//put some fancy animation here later
-		}
+    <script>
+    function calculateScore() {
 
-	</script>
+        let d = document.createElement("div");
+        d.id = "score";
+        let score = 100 - document.querySelectorAll('input[type="checkbox"]:checked').length;
+        d.innerHTML = `<h1>Your score:</h1><br><span>${score}</span>`
+        document.getElementsByTagName('main')[0].innerHTML = "<h1>(unofficial) Rice purity test</h1>";
+        document.getElementsByTagName('main')[0].appendChild(d);
+
+        //put some fancy animation here later
+    }
+    </script>
     <div id="page-container">
         <div class="navbar">
             <a href="index.html" style="float: left;">Home</a>
